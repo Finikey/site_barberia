@@ -69,3 +69,11 @@ function showSlides(n) {
      })
  
  })
+
+ function openForm(){
+  document.getElementById('modal_window').style.display = 'block'
+}
+
+function closeForm(){
+  document.getElementById('modal_window').style.display = 'none'
+}
