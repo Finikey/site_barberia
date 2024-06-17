@@ -64,6 +64,11 @@ body{
     color: white;
 }
 
+.header_a:hover{
+    color: #E8B040;
+    transition: .5s;
+}
+
 .header_li{
     display: flex;
     gap: 33px;
@@ -126,7 +131,6 @@ body{
 
 .right_h1{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
     font-size: 60px;
@@ -137,7 +141,6 @@ body{
 
 .right_3{
     font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
     color: #BDBEBD;
@@ -154,7 +157,7 @@ body{
     font-size: 18px;
 }
 
-.right_btn{
+/* .right_btn{
     width: 360px;
     height: 73px;
     border-radius: 5px;
@@ -163,11 +166,37 @@ body{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
+} */
+
+.right_btn {
+   
+    color: white !important;
+    text-transform: uppercase;
+ 
+    padding: 20px;
+    /* border: 4px solid #20bf6b !important; */
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    width: 360px;
+    height: 73px;
+    border-radius: 5px;
+    background-color: #2580FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    }
+    .right_btn:hover {
+    /* color: #494949 !important; */
+    border-radius: 50px;
+    /* border-color: #494949 !important; */
+    transition: all 0.3s ease 0s;
+    }
 
 .right_p{
     font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
     color: white;
@@ -264,7 +293,6 @@ body{
 
 .top_h3{
     font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
     color: white;
@@ -439,6 +467,11 @@ body{
 .rec{
     width: 285px;
     height: 50px;
+    
+}
+
+.rr{
+    font-size: 20px;
 }
 
 .record_right{
@@ -786,6 +819,7 @@ height: 424px;
 
 .addimg{
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 /* addimg_end */
@@ -868,7 +902,7 @@ height: 424px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .sign_input{
@@ -1197,4 +1231,52 @@ p {
     justify-content: space-between;
     gap: 8px;
     flex-wrap: wrap;
+}
+
+.service_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.spa{
+    color: #E8B040;
+}
+
+i{
+    color: white;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.barber{
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 8px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+.subm{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #2580FD;
+    color: white;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.sign{
+    margin-bottom: 50px;
 }

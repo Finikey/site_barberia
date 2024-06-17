@@ -62,9 +62,10 @@
                                 <h3 class="right_h3">Откройте для себя искусство традиционной стрижки </h3>
                                 <h3 class="right_h4">Загляните в Barberia и позволите нашим прфесионалам преобразить вас</h3>
                             </div>
-                            <a href="https://t.me/BarberiaBot"><div class="right_btn">
+                            <!-- <a href="https://t.me/BarberiaBot"><div class="right_btn">
                                 <p class="right_p">Записаться</p>
-                            </div></a>
+                            </div></a> -->
+                            <div class="right_btn" ><a class="right_p" href="https://t.me/BarberiaBot" target="_blank" rel="nofollow noopener">Записаться</a></div>
                         </div>
                     </div>
                 </div>
@@ -144,7 +145,7 @@
                         <article class="card">
                             <img
                             class="card__background"
-                            src="image/1716532209барбер.jpg"
+                            src="<?=$ser['img']?>"
                             alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
                             width="1920"
                             height="2193"
@@ -226,11 +227,11 @@
                             <div class="record_top">
                                 <h4 class="record_h4">Хотите записаться на прием без лишних звонков и ожидания? </h4>
                                 <h5 class="record_h5">
-                                Просто перейдите по ссылке или QR-коду и выберите удобное время для визита к нам! Мы ждем вас для создания стильного и ухоженного образа.
+                                Просто перейдите по <span class="spa">ссылке</span> или <span class="spa">QR-коду</span> и выберите удобное время для визита к нам! Мы ждем вас для создания стильного и ухоженного образа.
                                 </h5>
                             </div>
                             <a href="https://t.me/BarberiaBot"><div class="right_btn rec">
-                                <p class="right_p">Записаться</p>
+                                <p class="right_p rr">Записаться</p>
                             </div></a>
                         </div>
                         <div class="record_right">

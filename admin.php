@@ -2,6 +2,23 @@
     include('incl/connect.php');
 ?>
 
+<?php
+    if(!isset($_SESSION['uid'])){
+        echo '<script>document.location.href="sign.php"</script>';
+    }else{
+?>
+
+
+<?php
+        if(isset($_SESSION['uid'])){
+                $session_uid = $_SESSION['uid'];
+                $sql = "SELECT * FROM `users` WHERE id = $session_uid";
+                $result = $connect -> query($sql);
+                $users = $result -> fetch();
+            }
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +45,9 @@
                 </div></a>
                 <nav>
                     <ul class="header_ul">
-                        <li class="header_li"><a href="" class="header_a">Главная</a></li>
-                        <li class="header_li"><a href="" class="header_a">Запись</a></li>
-                        <li class="header_li"><a href="" class="header_a">Контанкты</a></li>
+                        <!-- <li class="header_li"><a href="" class="header_a">Главная</a></li>
+                        <li class="header_li"><a href="" class="header_a">Запись</a></li> -->
+                        <li class="header_li"><a href="?do=exit" class="header_a">Выйти</a></li>
                     </ul>
                 </nav>
             </div>
@@ -40,15 +57,33 @@
         <section class="work">
             <div class="container">
                 <div class="work_content">
-                    <div class="work_top">
-                        <h3 class="top_h3">Новые записи</h3>
-                    </div>
-                    <div class="work_wrapper">
-                    <?php 
-                        $sql = "SELECT * FROM `appointments`";
-                        $result = $connect -> query($sql);
-                        foreach($result as $app){
+                <div class="work_top">
+                <h3 class="top_h3">Новые записи</h3>
+                <form action="" method="get">
+                    <?php
+                    $sql_barbers = "SELECT DISTINCT `barber` FROM `appointments`";
+                    $result_barbers = $connect->query($sql_barbers);
                     ?>
+                    <select name="barber" class="barber">
+                        <option value="">Выберите барбера</option>
+                        <?php foreach ($result_barbers as $barber) { ?>
+                            <option value="<?=$barber['barber']?>"><?=$barber['barber']?></option>
+                        <?php } ?>
+                    </select>
+                    <button type="submit" class="subm">Фильтровать</button>
+                </form>
+            </div>
+                    <div class="work_wrapper">
+                    <?php
+                $barber = $_GET['barber'] ?? '';
+                $sql = "SELECT * FROM `appointments`";
+                if (!empty($barber)) {
+                    $sql .= " WHERE `barber` = '$barber'";
+                }
+                $sql .= " ORDER BY id DESC";
+                $result = $connect->query($sql);
+                foreach ($result as $app) {
+                ?>
                         <div class="work_wrapp">
                             <div class="wrap_text">
                                 <p class="wr_p">Имя:</p>
@@ -89,7 +124,7 @@
                 </div>
             </div>
         </section>
-        <section class="task">
+        <!-- <section class="task">
             <div class="container">
                 <div class="task_content">
                     <div class="work_top">
@@ -126,8 +161,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="completed">
+        </section> -->
+        <!-- <section class="completed">
             <div class="container">
                 <div class="completed_content">
                     <div class="work_top">
@@ -155,41 +190,36 @@
                                 <p class="wr_p">Вид услуги:</p>
                                 <p class="wr_pp">Стрижка</p>
                             </div>
-                            <!-- <div class="wrapp_btn">
+                            <div class="wrapp_btn">
                                 <div class="wrap_btn3">
                                     <p class="btn_p">Завершить</p>
                                 </div> 
-                            </div>   -->
+                            </div>  
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <?php 
             if(isset($_POST['ser_add'])){
                 $name = $_POST['name'];
                 $text = $_POST['text'];
                 $price = $_POST['price'];
                 $src = $_POST['img'];
-
                 if(empty($name)){
                     $error = 'name';
                 }
-
                 if(empty($text)){
                     $error = 'text';
                 }
-
                 if(empty($price)){
                     $error = 'price';
                 }
-
                 if(empty($_FILES['img'])){
                     $error.='Добавьте изображение<br>';
                  }else{  $src = 'image/service/'.time().$_FILES['img']['name'];
                             // echo $src;
                             move_uploaded_file($_FILES['img']['tmp_name'],$src);
                         }
-
                 if(empty($error)){
                     $sql = "INSERT INTO service (name,text,price,img) VALUES ('$name', '$text', '$price', '$src')";
                     $connect -> query($sql);
@@ -197,7 +227,6 @@
                 }
             }
         ?>
-
         <section class="addfaq">
             <div class="container">
                 <div class="addfaq_content">
@@ -220,6 +249,10 @@
                 </div>
             </div>
         </section>
+        <div class="container">
+            <div class="line"></div>
+        </div>
+        
         <section class="manag">
             <div class="container">
                 <div class="manag_content">
@@ -279,7 +312,9 @@
                 }
             }
         ?>
-
+    <div class="container">
+            <div class="line"></div>
+        </div>
         <section class="addfaq">
             <div class="container">
                 <div class="addfaq_content">
@@ -317,6 +352,9 @@
             </form>
         </div>
     </div>
+    <div class="container">
+            <div class="line"></div>
+        </div>
         <section class="manag">
             <div class="container">
                 <div class="manag_content">
@@ -377,6 +415,9 @@
                 }
             }
         ?>
+        <div class="container">
+            <div class="line"></div>
+        </div>
         <section class="addimg">
             <div class="container">
                 <div class="addimg_content">
@@ -398,6 +439,9 @@
                 </div>
             </div>
         </section>
+        <div class="container">
+            <div class="line"></div>
+        </div>
         <section class="addimg">
             <div class="container">
                 <div class="addimg_content">
@@ -468,7 +512,79 @@
                 </div>
             </div>
         </section>
+
+
+        <?php 
+            if(isset($_POST['reg'])){
+                $email = $_POST['email'];
+                $pass = $_POST['pass'];
+                $repass = $_POST['repass'];
+                $role = '1';
+                $_SESSION['role'] = $role;
+
+                $sql = "SELECT * FROM users WHERE email = '$email'";
+                $result = $connect -> query($sql);
+                $users = $result -> fetch();
+
+                if(empty($email)){
+                    $error_email = 'Введите почту';
+                }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                    $error_email='Формат почты не верный';
+                }
+
+                if(empty($pass)){
+                    $error_pass1='Введите пароль';
+                }elseif(strlen($pass)<6){
+                    $error_pass1='Пароль должен быть больше 6 символов';
+                }
+
+                if(empty($repass)){
+                    $error_pass2='Введите повтор пароля';
+                }elseif($pass1 != $pass2){
+                    $error_pass2 = 'Не совпадает с первым';
+                }
+
+                if(empty($error) && empty($error_email) && empty($error_pass1) && empty($error_pass2)){
+                    $pass1_md5 = md5($pass);
+                    $pass2_md5 = md5($repass);
+                    $sql = "INSERT INTO `users` (email, pass, repass, role) VALUES ('$email', '$pass1_md5', '$pass2_md5', '$role')";
+                    $connect -> query($sql);
+                    echo '<script>document.location.href="#sig"</script>';
+                }
+            }
+        ?>
+
+        <main>
+        <div class="container">
+            <div class="line"></div>
+        </div>
+        <section class="sign" id="sig">
+            <div class="container">
+                <div class="sign_content">
+                    <div class="sign_top">
+                        <div class="contacts_top">
+                            <div class="top_h3">Добавление администратора</div>
+                        </div>
+                    </div>
+                    <form class="sign_wrapp" method="POST" name="reg">
+                        <div  class="sign_form">
+                            <input type="text" placeholder="почта" class="sign_input" name="email">
+                            <i><?php if(isset($error_email)){echo $error_email;}?></i>
+                            <input type="password" placeholder="пароль" class="sign_input" name="pass">
+                            <i><?php if(isset($error_pass1)){echo $error_pass1;}?></i>
+                            <input type="password" placeholder="повторный пароль" class="sign_input" name="repass">
+                            <i><?php if(isset($error_pass2)){echo $error_pass2;}?></i>
+                            <input type="submit" value="Зарегистрировать" class="sign_sub" name="reg">
+                            <i><?php if(isset($error)){echo $error;}?></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
     </main>	
     <script src="js/main.js" defer></script>
 </body>
 </html>
+
+<?}?>

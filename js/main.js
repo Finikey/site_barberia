@@ -6,12 +6,12 @@ let next = document.getElementById ('next');
 
 next.addEventListener ("click", function () {
   showSlides(slideIndex += 1);
-  makeTimer();//Пересоздаем интервал если производится нажатие 
+  makeTimer(); 
 });
 
 prev.addEventListener ("click", function () {
   showSlides(slideIndex -= 1);
-  makeTimer();//Пересоздаем интервал если производится нажатие 
+  makeTimer();
 });
 
 function currentSlide(n) {
@@ -34,17 +34,16 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "flex";    
   }
  var timer = 0;
- makeTimer(); //Создаем интервал 
+ makeTimer();  
  function makeTimer(){
-    clearInterval(timer) //Очистим интервал, это позволит прервать его работу и отменить перелистывание
+    clearInterval(timer)
     timer = setInterval(function(){
       slideIndex++;
       showSlides(slideIndex);
     },5000);
   }
   
-  
- //Таймер, (чтобы было удобнее считать время) можно удалить
+
 
 
 
