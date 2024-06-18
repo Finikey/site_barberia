@@ -26,6 +26,9 @@
                 <a href="index.php"><div class="header_logo">
                     <img src="image/Logo.png" alt="logo" class="header_img" >
                 </div></a>
+                <div class="header__burger">
+                    <span></span>
+                </div>
                 <nav>
                     <ul class="header_ul">
                         <li class="header_li"><a href="#glav" class="header_a">Главная</a></li>
@@ -82,7 +85,7 @@
                             foreach($result as $slide){
                         ?>
                         <div class="myslide">
-                          <div class="slider_item pack_1"><img src="<?=$slide['img']?>" class="slide_img" alt="1"></div>
+                          <div class="slider_item pack_1" style="display: flex;"><img src="<?=$slide['img']?>" class="slide_img" alt="1"></div>
                         </div>
                         <?}?>
                         <!-- <div class="myslide">
@@ -157,8 +160,8 @@
                                     </p>
                                 </div>
                             <div class="service_but">
-                                <button class="card__button">1 500₽</button>
-                                <button class="card__button">Подробнее</button>
+                                <button class="card__button"><?=$ser['price']?>₽</button>
+                                <!-- <button class="card__button">Подробнее</button> -->
                             </div>
                             
                             </div>

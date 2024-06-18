@@ -21,8 +21,8 @@
     }
 ?>
 
-
-<!-- <?php 
+<!-- 
+<?php 
     try{
         $connect = new PDO('mysql:host=localhost;dbname=x165', 'x165', 'xJrYnKEWNAJYEaKi');
         echo 'db';
